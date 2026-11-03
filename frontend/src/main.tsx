@@ -1,3 +1,4 @@
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 
@@ -22,12 +23,14 @@ async function enableMocking() {
     const { worker } = await import("./mocks/browser");
 
     await worker.start({
-      onUnhandledRequest: "bypass",
+      onUnhandledRequest: "warn",
 
       serviceWorker: {
         url: `${import.meta.env.BASE_URL}mockServiceWorker.js`,
       },
     });
+
+    console.log("[MSW] Запущен успешно");
   }
 }
 
